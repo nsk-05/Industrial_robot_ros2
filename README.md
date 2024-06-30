@@ -1,13 +1,13 @@
-To launch husky in warehouse environment
+## To launch husky in warehouse environment
     ros2 launch bot_gazebo gazebo_husky.launch.py
 
-To launch simple robot in warehouse environment
+## To launch simple robot in warehouse environment
     ros2 launch bot_gazebo gazebo.launch.py
 
-TO launch simple robot mapping stack
+## TO launch simple robot mapping stack
     ros2 launch bot_navigation mapping.launch.py
 
-To launch simple bot navigation stack
+## To launch simple bot navigation stack
     ros2 launch bot_navigation navigation.launch.py
 
 TODO 
