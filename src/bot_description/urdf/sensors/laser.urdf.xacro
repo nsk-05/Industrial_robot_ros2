@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find bot_description)/urdf/sensors/laser2d.urdf.xacro" />
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+  <xacro:arg name="gpu" default="false"/>
+  <xacro:property name="gpu" value="$(arg gpu)" />
+  <xacro:arg name="organize_cloud" default="false"/>
+  <xacro:property name="organize_cloud" value="$(arg organize_cloud)" />
+  <xacro:macro name="laser">
+    <!-- <xacro:laser2d
+      update_rate="10"
+      ray_count="360"
+      min_angle="-3.1416"
+      max_angle="3.1416"
+      min_range="0.2"
+      max_range="12.0"
+      frame_id="laser"
+      topic_name="scan"
+      origin_xyz="0 0 0.125" 
+      origin_rpy="0 0 0"
+    /> -->
+    <xacro:VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" organize_cloud="${organize_cloud}" hz="10" min_range="0.3" samples="440" gpu="${gpu}">
+      <origin xyz="0 0 0.1" rpy="0 0 0" />
+    </xacro:VLP-16>
+  </xacro:macro>
+
+</robot>
