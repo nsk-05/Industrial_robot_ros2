@@ -37,4 +37,4 @@ TODO
 
     DWB Planner
 
-    TEB Planner
+    TEB Planner [X] Can't use TEB as it is not maintained for so long, so similar planner like mppi can be used
