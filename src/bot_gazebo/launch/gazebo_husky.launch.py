@@ -8,7 +8,7 @@ from launch.conditions import IfCondition
 from launch_ros.substitutions import FindPackageShare
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
-
+MY_NEO_ENVIRONMENT = os.environ['MAP_NAME']
 
 def generate_launch_description():
     # gz_resource_path = SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[
@@ -53,7 +53,11 @@ def generate_launch_description():
     description_launch_path = PathJoinSubstitution(
         [FindPackageShare('bot_description'), 'launch', 'husky_description.launch.py']
     )
+    pc_to_laser_launch_path = PathJoinSubstitution(
+        [FindPackageShare('bot_drivers'), 'launch', 'pc2laser.launch.py']
+    )
 
+    default_world_path = os.path.join(get_package_share_directory('neo_simulation2'), 'worlds', MY_NEO_ENVIRONMENT + '.world')
     return LaunchDescription([
 
         SetEnvironmentVariable(name='GAZEBO_MODEL_PATH', value=[
@@ -77,13 +81,13 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             name='spawn_x', 
-            default_value='1.8',
+            default_value= "0.0", #'1.8',
             description='Robot spawn position in X axis'
         ),
 
         DeclareLaunchArgument(
             name='spawn_y', 
-            default_value='-9.5',
+            default_value="0.0", #'-9.5',
             description='Robot spawn position in Y axis'
         ),
 
@@ -105,7 +109,7 @@ def generate_launch_description():
                     'aws_robomaker_small_warehouse_world'), '/launch/small_warehouse.launch.py']
             ),
             launch_arguments={
-                'world': os.path.join(get_package_share_directory('aws_robomaker_small_warehouse_world'), 'worlds', 'no_roof_small_warehouse', 'no_roof_small_warehouse.world')
+                'world': default_world_path # os.path.join(get_package_share_directory('aws_robomaker_small_warehouse_world'), 'worlds', 'no_roof_small_warehouse', 'no_roof_small_warehouse.world')
             }.items()
         ),
 
@@ -148,5 +152,9 @@ def generate_launch_description():
                 # 'bot_type' : bot_type
                 'rviz' : LaunchConfiguration("rviz")
             }.items()
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(pc_to_laser_launch_path)
         )
     ])
