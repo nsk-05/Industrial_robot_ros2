@@ -20,7 +20,7 @@ def generate_launch_description():
     )
 
     nav2_config_path = PathJoinSubstitution(
-        [FindPackageShare('bot_navigation'), 'config', 'navigation_navfn_neo.yaml']
+        [FindPackageShare('bot_navigation'), 'config', 'nav_autonomous_mapping.yaml']
     )
 
     rviz_config_path = PathJoinSubstitution(
