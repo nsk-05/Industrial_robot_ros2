@@ -10,6 +10,18 @@
 ## To launch simple bot navigation stack
     ros2 launch bot_navigation navigation.launch.py
 
+# For autonomous mapping
+
+## start simulation
+    ros2 launch bot_gazebo gazebo_husky.launch.py rviz:=false
+
+## start autonomous mapping stack
+    ros2 launch bot_navigation autonomous_mapping.launch.py
+
+Autonomous mapping:
+[autonomous_mapping.webm](https://github.com/nsk-05/Industrial_robot_ros2/assets/86995491/6f572a1e-dbeb-4cf8-98f8-3f4989b82174)
+
+
 TODO 
 
     [X] create urdf for both diferntial and maccanum drive robot
@@ -26,7 +38,7 @@ TODO
 
     [X] Create mapping and Navigation for husky robot
 
-    [] Add autonomous mapping stack
+    [X] Add autonomous mapping stack
     
     [ ] Fine tune mapping and navigation 
 
