@@ -13,6 +13,7 @@
 # For autonomous mapping
 
 ## start simulation
+    export MAP_NAME="neo_workshop"
     ros2 launch bot_gazebo gazebo_husky.launch.py rviz:=false
 
 ## start autonomous mapping stack
