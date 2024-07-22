@@ -7,8 +7,8 @@ from launch.conditions import IfCondition
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 from launch.conditions import IfCondition, UnlessCondition
-
-
+import time
+is_automap = os.environ['IS_AUTO_MAP']
 def generate_launch_description():
     bot_type = os.getenv('BOT_TYPE')
     nav2_launch_path = PathJoinSubstitution(
@@ -19,9 +19,14 @@ def generate_launch_description():
         [FindPackageShare('bot_navigation'), 'maps', 'warehouse3d.yaml']
     )
 
-    nav2_config_path = PathJoinSubstitution(
-        [FindPackageShare('bot_navigation'), 'config', 'nav_autonomous_mapping.yaml']
-    )
+    if(is_automap=='true'):
+        nav2_config_path = PathJoinSubstitution(
+            [FindPackageShare('bot_navigation'), 'config', 'nav_autonomous_mapping.yaml']
+        )
+    else:
+        nav2_config_path = PathJoinSubstitution(
+        [FindPackageShare('bot_navigation'), 'config', 'navigation_smac2d_dwb.yaml']
+        )
 
     rviz_config_path = PathJoinSubstitution(
         [FindPackageShare('bot_navigation'), 'rviz', 'navigation.rviz']

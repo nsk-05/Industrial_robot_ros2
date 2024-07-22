@@ -1,5 +1,13 @@
+## TO build the repo
+clone the repo in directory {project_name}_ws
+cd {project_name}_ws
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+
+
 ## To launch husky in warehouse environment
-    ros2 launch bot_gazebo gazebo_husky.launch.py
+    export MAP_NAME="warehouse"
+    ros2 launch bot_gazebo gazebo_husky.launch.py rviz:=false
 
 ## To launch simple robot in warehouse environment
     ros2 launch bot_gazebo gazebo.launch.py
@@ -8,7 +16,8 @@
     ros2 launch bot_navigation mapping.launch.py
 
 ## To launch simple bot navigation stack
-    ros2 launch bot_navigation navigation.launch.py
+    export IS_AUTO_MAP=false
+    ros2 launch bot_navigation navigation.launch.py rviz:=true
 
 # For autonomous mapping
 
@@ -17,7 +26,8 @@
     ros2 launch bot_gazebo gazebo_husky.launch.py rviz:=false
 
 ## start autonomous mapping stack
-    ros2 launch bot_navigation autonomous_mapping.launch.py
+    export IS_AUTO_MAP=true
+    ros2 launch bot_navigation autonomous_mapping.launch.py rviz:=true
 
 Autonomous mapping:
 [autonomous_mapping.webm](https://github.com/nsk-05/Industrial_robot_ros2/assets/86995491/6f572a1e-dbeb-4cf8-98f8-3f4989b82174)
