@@ -2,6 +2,7 @@
 clone the repo in directory {project_name}_ws
 cd {project_name}_ws
 rosdep install --from-paths src --ignore-src -r -y
+sudo apt install ros-humble-gazebo-dev ros-humblw-gazebo-ros ros-humble-gazebo-ros-pkgs ros-humble-navigation2 ros-humble-joint-state-publisher ros-humble-xacro ros-humble-pointcloud-to-laserscan
 colcon build
 
 
