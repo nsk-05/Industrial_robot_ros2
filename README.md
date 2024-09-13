@@ -44,8 +44,6 @@ TODO
 
     [X] Launch the simulation with small warehouse environment
 
-    [ ] Modify industry environment according to the need'
-
     [X] Create mapping and Navigation packages
 
     [X] Create mapping and Navigation for husky robot
@@ -60,5 +58,3 @@ TODO
     Smac Planner
 
     DWB Planner
-
-    TEB Planner [X] Can't use TEB as it is not maintained for so long, so similar planner like mppi can be used
